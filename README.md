@@ -59,7 +59,7 @@ You can also supply the hostname, username, password, token, and space as **envi
 
 If you are using self-signed certificates or want to **ignore SSL errors**, use the `--insecure` option.
 
-You can **upload multiple files** or entire folders. If you specify a folder, `md2cf` will traverse it recursively and upload all files that end in `.md`. For more information, see [Uploading Folders](#uploading-folders).
+You can **upload multiple files** or entire folders. If you specify a folder, `md2cf` will traverse it recursively and upload all files that end in `.md`. For more information, see [Uploading Folders Recursively](#uploading-folders-recursively).
 
 If you would like to preview `md2cf`'s actions without modifying Confluence, use the `--dry-run` option. This will print a list of page data without making any changes.
 
@@ -182,18 +182,13 @@ By default, relative links that point to non-existent files (or files that are n
 
 ### Uploading Folders Recursively
 
-To help you mirror large documentation to Confluence, `md2cf` allows you to upload entire folders. When using this feature, `md2cf` will recursively traverse all subdirectories and upload any `.md` files it encounters.
+To help you mirror a large documentation to Confluence, `md2cf` allows you to upload entire folders. When using this feature, `md2cf` will recursively traverse all subdirectories and upload any `.md` files it encounters.
 
 By default, `md2cf` will respect your `.gitignore` file and skip any files or folders it defines. If you prefer to upload everything in the folder, use the `--no-gitignore` option.
 
 Please note that Confluence can only nest pages under other pages. As a result, folders will be represented by empty pages with the same title as the folder in the final upload. You can customize this behavior using one of the three command line parameters defined in the next sections.
 
 #### Customizing folder names
-
-Folder names like `interesting-subsection` or `dir1` are not particularly nice. If you pass the `--beautify-folders` option, all spaces and hyphens in folder names will be replaced with spaces and the first letter will be capitalized, producing `Interesting subsection` and `Dir1`.
-
-Alternatively, you can create a YAML file called `.pages` with the following format in every folder you wish to rename.
-If you pass the `--use-pages-file`, the folder will be given that title.
 
 Folder names like `interesting-subsection` or `dir1` may not be aesthetically pleasing. If you use the `--beautify-folders` option, spaces and hyphens in folder names will be replaced with spaces, and the first letter of each word will be capitalized, resulting in `Interesting Subsection` and `Dir1`.
 
